@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<title>Search</title>
+<head>
+	<script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="data_handler.js"> </script>
+</head>
+<body>
+
+<form>
+  <select id="Search">
+  <option value="name">Name</option>
+  <option value="id">ID</option>
+  <option value="address">Address</option>
+  </select>
+  <br><br>
+  Enter Search Text:<br>
+  <input type="text" id = "text" name= "Search Text">
+  <br><br>
+  <input type="button" onclick= "query_data()" value="Search">
+</form>
+
+<br><br>
+
+<table border = "1">
+    <tbody id="query_table"></tbody>
+</table>
+
+<br><br>
+
+<form>
+  Enter Result # To get Location:<br>
+  <input type="text" id = "result" name= "Rersult #">
+  <br><br>
+  <input type="button" onclick= "get_address()" value="View Locations">
+</form>
+
+</body>
+</html>

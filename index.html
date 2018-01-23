@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<title>Customer Interface</title>
+<head>
+	<script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
+	<script src="data_handler.js"> </script>
+</head>
+<body>
+
+<form>
+  Name:<br>
+  <input type="text" id = "Name" name="Name"><br>
+  Address:<br>
+  <input type="text" id = "Address" name="Address"><br>
+  Card Number:<br>
+  <input type="text" id = "c_num" name="Card Number"><br>
+  Book ISBN:<br>
+  <input type="text" id = "ISBN" name= "ISBN">
+  <br><br>
+  <input type="button" onclick="send_data()" value="Checkout">
+  <input type="button" onclick="general_data()" value="View Users">
+  <br><br>
+</form>
+
+ <a href= "search.html" target="_blank"><button>Detailed Search</button></a>
+
+
+<br><br>
+
+<table border = "1">
+    <tbody id="user_table"></tbody>
+</table>
+
+
+</body>
+</html>
