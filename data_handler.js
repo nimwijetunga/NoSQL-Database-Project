@@ -78,8 +78,6 @@ function query_type(key_word, type){
     		resolve(data);
 	});
   });
-  data.length = 0;
-
 }
 
 
@@ -109,13 +107,15 @@ function print_data(tbody, users){
 }
 
 //Get an address of a customer based on a string
-function get_address(){
+async function get_address(){
 	var num = document.getElementById("result").value;
 	var table = document.getElementById("query_table");
 	if(num < 1 || table.rows[num]== undefined) return;
 	var address = table.rows[num].cells[3].innerHTML;
 	console.log(address);
-	geocode(address);
+	var coords = await geocode(address);
+	//console.log(coords[0] + " " + coords[1]);
+	initMap(coords[0],coords[1],coords[2]);
 }
 
 function user_exists(users,id) {
@@ -165,7 +165,8 @@ function get_data(){
 
 //Use google geocode api to find location (will implement a map to diplay results soon based on lat and long coords)
 function geocode(loc){
-    axios.get('https://maps.googleapis.com/maps/api/geocode/json',{
+	return new Promise(function(resolve, reject) {
+		axios.get('https://maps.googleapis.com/maps/api/geocode/json',{
       params:{
         address:loc,
         key:'AIzaSyDyjYOaLDSRULDGQXQu9oJIrCMMWc27i4Y'
@@ -173,10 +174,40 @@ function geocode(loc){
     })
     .then(function(response){
       //console.log(response);
-      console.log(response.data.results[0].formatted_address);
-      //return response.data.results[0].formatted_address;
+      var obj = response.data.results[0];
+      var lat = obj.geometry.location.lat;
+      var long = obj.geometry.location.lng;
+      var address = obj.formatted_address;
+      var coords = new Array();
+      coords.push(lat);
+      coords.push(long);
+      coords.push(address);
+      resolve(coords);
     })
     .catch(function(error){
       console.log(error)
     });
+    	
+  });
   }
+
+  function initMap(lat,lng,address) {
+        var uluru = {lat: lat, lng: lng};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 8,
+          center: uluru
+        });
+
+        var infowindow = new google.maps.InfoWindow({
+          content: address
+        });
+
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map,
+          title: 'Location'
+        });
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+}

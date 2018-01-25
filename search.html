@@ -2,9 +2,18 @@
 <html>
 <title>Search</title>
 <head>
-	<script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-	<script src="data_handler.js"> </script>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1GzKSWV5_l0ceN5bw0GsWA3u08_YGsr8&callback=initMap">
+    </script>
+  <script src="data_handler.js"> </script>
+  <style>
+       #map {
+        height: 300px;
+        width: 50%;
+       }
+    </style>
 </head>
 <body>
 
@@ -35,6 +44,9 @@
   <br><br>
   <input type="button" onclick= "get_address()" value="View Locations">
 </form>
+
+<div id='map'></div>
+
 
 </body>
 </html>
