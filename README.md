@@ -6,5 +6,5 @@ Simple library database which employs the use of NoSQL (non-relational databases
 
 * Storing and Retrieving Data from a Real-Time Database
 * Using Asynchronous Functions in JS (Promises and Callbacks)
-* Converting JavaScript objects to elements to HTML (i.e creating an HTML Table in JS)
+* Converting JavaScript objects to elements in HTML (i.e creating an HTML Table in JS)
 * Google API Implementation
